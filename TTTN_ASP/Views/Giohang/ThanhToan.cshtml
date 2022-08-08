@@ -1,0 +1,150 @@
+﻿@model IEnumerable<CartItem>
+@{
+    ViewBag.Title = "Thanh toán";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+@{
+    var user = ViewBag.user;
+}
+
+@using (Html.BeginForm("DatMua", "Giohang", FormMethod.Post))
+{
+<section class="maincontent clearfix">
+
+
+    <div class="container my-3">
+        @*<h2 class="text-center" style="margin-top:40px;font-weight: bold;color:red;">ĐẶT HÀNG</h2><hr style="height:3px"><br>*@
+
+        <br /><h3 class="text-center text-primary" style="font-weight: bold;font-size:27px">THÔNG TIN NGƯỜI NHẬN</h3><br />
+        <span class="text-danger" style="font-weight: bold; font-size: 14px;font-style:italic">*Lưu ý: Nếu thông tin người nhận thay đổi, vui lòng cập nhật lại</span><hr style="height:3px" />
+        <div class="row">
+            <div class="col-md-12">
+                <label style="font-weight:bold;" for="kh_ten">Họ tên</label>
+                <input type="text" class="form-control" name="DeliveryName" id="fullname"
+                       value="@user.FullName">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label style="font-weight:bold;" for="kh_ten">Số điện thoại</label>
+                <input type="number" class="form-control" name="DeliveryPhone" id="phone"
+                       value="@user.Phone">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label style="font-weight:bold;" for="kh_ten">Email</label>
+                <input type="email" class="form-control" name="DeliveryEmail" id="email"
+                       value="@user.Email">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label style="font-weight:bold;" for="kh_ten">Địa chỉ</label>
+                <input type="text" class="form-control" name="DeliveryAddress" id="address"
+                       value="@user.Address">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label style="font-weight:bold;" for="kh_ten">Ghi chú</label>
+
+                <textarea name="Note" class="form-control" rows="1" placeholder="Nhập ghi chú (Nếu có)"></textarea>
+
+                @*<input type="text" class="form-control" name="Note" id="Note"
+                    value="" placeholder="Nhập ghi chú (Nếu có)">*@
+            </div>
+        </div><br>
+
+
+
+
+    </div>
+
+
+
+
+
+
+    <div class="navbar bg-light my-3 h4"><b style="margin-left:8%">PHƯƠNG THỨC THANH TOÁN</b></div>
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 form-group">
+        <div class="ck1" style="margin-left:12%">
+            <input type="checkbox" id="cb5" name="paymentType" class="paymentType" value="direct" checked="checked">
+            <label for="cb5" style="font-size:17px">Thanh toán khi nhận hàng</label>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <div class="container my-4">
+        <hr style="height:3px">
+        <h2 class="text-center text-primary" style="font-weight: bold;font-size:30px">ĐƠN HÀNG</h2><br><br>
+
+
+        <table class="table table-bordered ">
+            @*<thead class="bg-info">*@
+
+            <tr class="text-center" style="background-color:lightskyblue;">
+                <th style="width:120px">Mã sản phẩm</th>
+                <th>Hình ảnh</th>
+                <th style="width:400px">Tên sản phẩm</th>
+                <th style="width:30px">Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Thành tiền</th>
+            </tr>
+            @*</thead>*@
+
+            @{ decimal tongtien = 0; }
+
+            @*<tbody>*@
+            @foreach (var cart in Model)
+            {
+                <tr class="text-center">
+                    <td class="text-center">@cart.ProductId</td>
+                    <td style="width: 180px;">
+                        <img class="img-fluid card-img-top bg" src="~/Public/images/products/@cart.Img" alt="@cart.Name">
+                    </td>
+                    <td>@cart.Name</td>
+                    <td style="width:100px">
+                        @cart.Qty
+                    </td>
+                    <td class="text-end">@String.Format("{0:0,0}", cart.PriceSale)<sup class="text-dark">đ</sup></td>
+
+                    <td class="text-end">@String.Format("{0:0,0}", cart.Amount)<sup class="text-dark">đ</sup></td>
+
+                </tr>
+                tongtien += cart.Amount;
+            }
+
+            <tr class="text-center">
+
+                <th colspan="7">
+
+                    Tổng cộng:<a class="text-danger" style="font-size:17px;text-decoration:none"> @String.Format("{0:0,0}", tongtien)<sup>đ</sup></a>
+                </th>
+
+            </tr>
+            @*</tbody>*@
+        </table>
+
+
+
+        <button type="submit" class="btn btn-warning btn-sm text-center text-uppercase" style="font-size: 20px;margin-left:42%;font-weight:bold;width:200px;">Đặt hàng</button><br>
+        <br><hr style="background-color: rgba(0, 0, 0, 0.959);height:3px;">
+
+
+
+        <a href="~/trang-chu" class="btn btn-sm btn-info"><i class="fas fa-reply"></i> Tiếp tục mua hàng</a>
+        <a href="~/gio-hang" class="btn btn-sm btn-success"><i class="fas fa-shopping-cart"></i> &nbspVề giỏ hàng</a>
+
+    </div>
+
+
+
+</section>
+}

@@ -1,0 +1,117 @@
+﻿/*Footer trang */
+* {
+    margin: 0;
+    padding: 0;
+}
+/* LOGIN - CART */
+.login a {
+    text-decoration: none;
+}
+
+.col-3 h4 {
+    text-transform: uppercase;
+    color: orangered;
+}
+
+.col-3 a:hover {
+    background: #FA8258;
+    text-decoration: none;
+}
+
+.menu_footer a {
+    text-transform: none;
+    text-decoration: none;
+    color: white;
+}
+
+.ad p {
+    color: white;
+}
+
+.menu_footer p {
+    color: white;
+}
+
+footer {
+    margin-top: 20px;
+    display: block;
+    background-color: var(--bs-body-color);
+    padding: 20px 0 10px 30px;
+}
+
+ul.menu_footer li {
+    list-style: none;
+    text-decoration: none;
+}
+
+.footer {
+    padding-bottom: 20px;
+    text-decoration: none;
+}
+
+    .footer h3 {
+        color: #fa8258;
+    }
+
+/*  */
+.img-fluid {
+    max-width: 80%;
+    height: auto;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.row-view {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+
+
+
+.container-form {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 60px;
+}
+
+.col-25 {
+    float: left;
+    width: 40%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Bố cục linh hoạt: khi màn hình có chiều rộng dưới 600px thì hai cột chồng 
+  lên nhau thay vì nằm cạnh nhau */
+
+
+.ad img {
+    max-width: 200px;
+    margin: 37px 0px 10px;
+}
+/* Header đầu */
+.row h6 {
+    text-align: center;
+}
+/*san pham - tin tuc - noi dung*/
+

@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Trang quản trị";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<div class="content-wrapper bg-white">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2" >
+                <div class="col-md-6" style="margin-left:30%">
+                    <h1 class="m-0 text-primary" style="font-weight:bold;">TRANG QUẢN TRỊ - DINH KHANG STORE</h1>
+                    <img style="margin-left:130px" src="~/Public/images/logodkstore.png"/>
+                    @Html.Partial("Message")
+
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    @*<ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Index</li>
+                    </ol>*@
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    @*<div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>150</h3>
+
+                            <p>Đơn hàng mới</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                        <a href="@Url.Action("Index","Order")" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>*@
+                </div>
+                <!-- ./col -->
+                <!-- /.row (main row) -->
+            </div><!-- /.container-fluid -->
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

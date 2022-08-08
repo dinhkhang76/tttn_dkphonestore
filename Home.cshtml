@@ -1,0 +1,30 @@
+﻿@model IEnumerable<MyClass.Models.Category>
+@{
+    ViewBag.Title = "Trang chủ";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+@section header{
+    <link href="~/Public/css/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="~/Public/css/owl.carousel.min.css" rel="stylesheet" />
+    <script src="~/Public/js/owl.carousel.min.js"></script>
+
+}
+
+
+@Html.Action("Slideshow", "Module")
+
+<section class="contenthome">
+    <div class="container">
+        <div class="grid_column-10">
+            @foreach (var category in Model)
+            {
+                @Html.Action("HomeProduct","Site", new { @id = category.Id })
+
+
+
+
+            }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,92 @@
+﻿@model MyClass.Models.Slider
+
+@{
+    ViewBag.Title = "Xóa slider";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Main content -->
+        <section class="content my-2">
+
+            <!-- Default box -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-6"><strong class="text-primary" style="font-size:22px"> XÓA SLIDER</strong></div>
+                        <div class="col-6 col-md-6 text-right">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                            <div class="form-actions no-color">
+                                <button class="btn btn-sm btn-danger mx-0" type="submit"><i class="fas fa-trash-alt"></i><b>&nbsp&nbspXóa</b></button>
+                                <a href="@Url.Action("Index","Slider")" class="btn btn-sm btn-info"><i class="fas fa-arrow-left"></i>&nbsp&nbspVề danh sách</a>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <span style="font-weight:bold;color:red;font-size:20px">Bạn có chắc muốn xóa Slider này không?</span>
+                    <table class="table table-bordered table-striped">
+                        <tr class="bg-gradient-info">
+                            <th style="width:150px">Tên trường</th>
+                            <th>Nội dung</th>
+                        </tr>
+                        <tr>
+                            <td>Tên Slider</td>
+                            <td>@Html.DisplayFor(model => model.Name)</td>
+                        </tr>
+                        <tr>
+                            <td>URL</td>
+                            <td>@Html.DisplayFor(model => model.Url)</td>
+                        </tr>
+                        <tr>
+                            <td>Hình ảnh</td>
+                            <td><img src="~/Public/images/sliders/@Model.Img" style="width:800px" /></td>
+                        </tr>
+
+                        <tr>
+                            <td>Vị trí</td>
+                            <td>@Html.DisplayFor(model => model.Position)</td>
+                        </tr>
+                        @*<tr>
+                                <td>Ngày tạo</td>
+                                <td>@Html.DisplayFor(model => model.Created_At)</td>
+                            </tr>
+
+                            <tr>
+                                <td>Ngày cập nhật</td>
+                                <td> @Html.DisplayFor(model => model.Updated_At)</td>
+                            </tr>*@
+                        <tr>
+                            <td>Trạng thái</td>
+                            @if (Model.Status == 1)
+                            {
+                                <td>Xuất bản</td>
+
+                            }
+                            @if (Model.Status == 2)
+                            {
+                                <td>Chưa xuất bản</td>
+
+                            }
+                            else
+                            {
+                               <td>Chưa xuất bản</td>
+                            }
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!-- /.card -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+}

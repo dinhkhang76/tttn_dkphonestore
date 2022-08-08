@@ -1,0 +1,23 @@
+﻿@model IEnumerable<MyClass.Models.Menu>
+<div class=" col-md-2 col-sm-12 col-xs-12">
+    <div class="item text-uppercase">
+        <h5>
+            <span class="text-warning">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMenu   </span>
+        </h5>
+
+    </div>
+    @foreach (var menu in Model)
+    {
+        <ul>
+            <li class="text-warning"><a class="nav-link text-white" href="@menu.Link">@menu.Name</a></li>
+        </ul>
+
+    }
+
+
+    @*{{-- <ul>
+            <li class="text-warning"><a class="nav-link text-white" href="/content/huong-dan-thanh-toan.html">Hướng dẫn thanh toán</a></li>
+            <li class="text-warning"><a class="nav-link text-white" href="/content/quy-dinh-doi-tra.html">Quy định đổi trả</a></li>
+            <li class="text-warning"><a class="nav-link text-white" href="/content/chinh-sach-ban-hang.html">Chính sách bán hàng</a></li>
+        </ul> --}}*@
+</div>

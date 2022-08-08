@@ -1,0 +1,227 @@
+﻿@model MyClass.Models.Order
+
+@{
+    ViewBag.Title = "Chi tiết đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content my-2">
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong class="text-danger text-uppercase" style="font-size:22px">
+                            CHI TIẾT đơn hàng
+                        </strong>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a href="@Url.Action("Destroy","Order",new { id = Model.Id })" class="btn btn-sm btn-danger">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                            </svg>&nbsp&nbspHủy đơn hàng
+                        </a>
+                        <a href="@Url.Action("Index","Order")" class="btn btn-sm btn-info"><i class="fas fa-arrow-left"></i>&nbsp&nbspVề danh sách</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                @Html.Partial("Message1")<br />
+
+                <h4 class=" text-center"><b class=" text-primary text-uppercase">THÔNG TIN NGƯỜI NHẬN</b></h4><br />
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td>Mã đơn hàng</td>
+                        <td>@Model.Id</td>
+                    </tr>
+                    <tr>
+                        <td>Mã khách hàng</td>
+                        <td>@Model.UserId</td>
+                    </tr>
+                    <tr>
+                        <td> Họ tên</td>
+                        <td>@Model.DeliveryName</td>
+
+                        @*<td>@Html.Action("NameCustomer", "User", new { userid = Model.UserId })</td>*@
+                    </tr>
+                    <tr>
+                        <td> Địa chỉ</td>
+                        <td>@Model.DeliveryAddress</td>
+
+                        @*<td>@Html.Action("AddressCustomer", "User", new { userid = Model.UserId })</td>*@
+                    </tr>
+                    <tr>
+                        <td> Email</td>
+                        <td>@Model.DeliveryEmail</td>
+
+                        @*<td>@Html.Action("EmailCustomer", "User", new { userid = Model.UserId })</td>*@
+                    </tr>
+                    <tr>
+                        <td>Số điện thoại</td>
+                        <td>@Model.DeliveryPhone</td>
+
+                        @*<td>@Html.Action("PhoneCustomer", "User", new { userid = Model.UserId })</td>*@
+                    </tr>
+                    <tr>
+                        <td>Ghi chú</td>
+                        @if (Model.Note == null || Model.Note == "")
+                        {
+                            <td>Không có ghi chú</td>
+                        }
+                        else
+                        {
+                            <td><b>@Model.Note</b></td>
+
+                        }
+                    </tr>
+                </table><br /><hr style="height:3px;background-color:khaki" /><br />
+                <h4 class=" text-center"><b class="text-primary">THÔNG TIN GIỎ HÀNG</b></h4><br />
+                <table class="table table-bordered ">
+                    <thead>
+                        <tr class="" style="background-color:lightskyblue;">
+                            <th class="text-center" style="width:120px">Mã sản phẩm</th>
+                            <th class="text-center" style="width:160px;">Hình ảnh</th>
+                            <th class="text-center">Tên sản phẩm</th>
+                            <th class="text-center" style="width:100px">Số lượng</th>
+                            <th class="text-center">Đơn giá</th>
+                            <th class="text-center">Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ decimal tongtien = 0;}
+                        @foreach (var ct in ViewBag.ListChiTiet)
+                        {
+                            <tr>
+                                <td class="text-center">@ct.ProductId</td>
+                                <td><img src="~/Public/images/products/@Html.Action("ProductImg", "Product", new { productid = ct.ProductId })" class="img-fluid" /></td>
+                                <td class="text-center">@Html.Action("ProductName", "Product", new { productid = ct.ProductId })</td>
+                                <td class="text-center">@ct.Qty</td>
+                                <td class="text-center" style="margin-left:30px">@String.Format("{0:0,0}", ct.PriceSale)<sup class="text-dark">đ</sup></td>
+                                <td class="text-center">@String.Format("{0:0,0}", ct.Amount)<sup class="text-dark">đ</sup></td>
+                            </tr>
+                            tongtien += ct.Amount;
+                        }
+                    </tbody>
+                    <tfoot>
+
+                        <tr>
+
+                            <th colspan="7" class="text-center">
+                                Tổng cộng:<a class="text-danger" style="font-size:17px;text-decoration:none"> @String.Format("{0:0,0}", tongtien)<sup>đ</sup></a>
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table><br /><hr style="height:3px;background-color:khaki" /><br />
+                <h4 class=" text-center"><b class="text-primary">TRẠNG THÁI ĐƠN HÀNG</b></h4><br /><br />
+                @Html.Partial("Message")<br />
+                @if (Model.Status == 1)
+                {
+                    <div class="nav justify-content-end" style="width:2%">
+                        <i class="fas fa-shipping-fast text-success" style="margin-bottom:5px;"></i>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 2%;background-color:dodgerblue"></div>
+                    </div>
+                    <div>
+                        <div class="row" style="margin-top:10px">
+                            <div class="col-md-3">
+                                <span>Chờ xác nhận</span>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="@Url.Action("Confirm","Order", new { id = Model.Id })" class="btn btn-sm btn-warning" style="text-decoration: none">Xác nhận đơn hàng</a>
+                            </div>
+                            <div class="col-md-3">
+                                <a @*href="@Url.Action("Shipping","Order", new { id = Model.Id })"*@ class="btn btn-sm btn-primary" style="text-decoration: none">Vận chuyển</a>
+                            </div>
+                            <div class="col-md-3">
+                                <a @*href="@Url.Action("Success","Order", new { id = Model.Id })"*@ class="btn btn-sm btn-success" style="margin-left:50px">Giao hàng thành công</a>
+                            </div>
+                        </div>
+                    </div><br /><br />
+                }
+                @if (Model.Status == 2)
+                {
+                    <div class="nav justify-content-end" style="width:31%">
+                        <i class="fas fa-shipping-fast text-success" style="margin-bottom:5px;"></i>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 31%;background-color:dodgerblue"></div>
+                    </div>
+                    <div>
+                        <div class="row" style="margin-top:10px">
+                            <div class="col-md-3">
+                                <span>Chờ xác nhận</span>
+                            </div>
+                            <div class="col-md-3">
+                                <a @*href="@Url.Action("Confirm","Order", new { id = Model.Id })"*@ class="btn btn-sm btn-warning">Xác nhận đơn hàng</a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="@Url.Action("Shipping","Order", new { id = Model.Id })" class="btn btn-sm btn-primary" style="text-decoration: none">Vận chuyển</a>
+                            </div>
+                            <div class="col-md-3">
+                                <a @*href="@Url.Action("Success","Order", new { id = Model.Id })"*@ class="btn btn-sm btn-success" style="margin-left:50px">Giao hàng thành công</a>
+                            </div>
+                        </div>
+                    </div><br /><br />
+                }
+                @if (Model.Status == 3)
+                {
+                    <div class="nav justify-content-end" style="width:61%">
+                        <i class="fas fa-shipping-fast text-success" style="margin-bottom:5px;"></i>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 61%;background-color:dodgerblue"></div>
+                    </div>
+                    <div>
+                        <div class="row" style="margin-top:10px">
+                            <div class="col-md-3">
+                                <span>Chờ xác nhận</span>
+                            </div>
+                            <div class="col-md-3">
+                                <a @*href="@Url.Action("Confirm","Order", new { id = Model.Id })"*@ class="btn btn-sm btn-warning">Xác nhận đơn hàng</a>
+                            </div>
+                            <div class="col-md-3">
+                                <a @*href="@Url.Action("Shipping","Order", new { id = Model.Id })"*@ class="btn btn-sm btn-primary" style="margin-left:80px">Vận chuyển</a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="@Url.Action("Success","Order", new { id = Model.Id })" class="btn btn-sm btn-success" style="margin-left:130px">Giao hàng thành công</a>
+                            </div>
+                        </div>
+                    </div><br /><br />
+                }
+                @if (Model.Status == 4)
+                {
+                    <div class="nav justify-content-end" style="width:100%">
+                        <i class="fas fa-shipping-fast text-success" style="margin-bottom:5px;"></i>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 100%;background-color:dodgerblue"></div>
+                    </div>
+                    <div>
+                        <div class="row" style="margin-top:10px">
+                            <div class="col-md-3">
+                                <span>Chờ xác nhận</span>
+                            </div>
+                            <div class="col-md-3">
+                                <a @*href="@Url.Action("Confirm","Order", new { id = Model.Id })"*@ class="btn btn-sm btn-warning">Xác nhận đơn hàng</a>
+                            </div>
+                            <div class="col-md-3">
+                                <a @*href="@Url.Action("Shipping","Order", new { id = Model.Id })"*@ class="btn btn-sm btn-primary" style="margin-left:80px">Vận chuyển</a>
+                            </div>
+                            <div class="col-md-3">
+                                <a @*href="@Url.Action("Success","Order", new { id = Model.Id })"*@ class="btn btn-sm btn-success" style="margin-left:130px">Giao hàng thành công</a>
+                            </div>
+                        </div>
+                    </div><br /><br />
+                }
+
+            </div>
+        </div>
+        <!-- /.card -->
+    </section>
+    <!-- /.content -->
+</div>

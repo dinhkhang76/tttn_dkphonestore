@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "Liên hệ";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+@{
+    var user = ViewBag.user;
+}
+@using (Html.BeginForm("GuiMail", "LienHe", FormMethod.Post))
+{
+    <div class="container">
+        <div class="p-4">
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="~/Public/images/face/face4.jpg" alt="user-avatar" class="icard-img-top img-fluid img-thumbnail rounded-circle">
+
+                </div>
+
+                <div class="col-md-6" style="margin-top:15px">
+                    <h4 class=""><b style="font-weight: bold; margin-left: 20px">Lê Đình Khang</b></h4>
+                    <p class="text-gray text-sm" style="font-style:italic;font-size:15px;margin-left:20px"><b></b> Nhân viên chăm sóc khách hàng </p>
+                    <ul class=" mb-0 fa-ul text-muted">
+                        <li class="small">
+                            <span class="fa-li">
+                                <svg style="margin-right:30px" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                                    <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
+                                    <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                </svg>
+                            </span> Phòng chăm sóc khách hàng - Dinh Khang Store - Số 206 Dương Đình Hội, phường Phước Long B, TP.Thủ Đức
+                        </li>
+                        <li style="margin-top:10px" class="small"><span class="fa-li"><i class="far fa-comment-alt" style="margin-right:30px"></i></span>"Hãy liên hệ với Dinh Khang Store để chúng tôi có thể tư vấn trực tiếp cho bạn về sản phẩm và dịch vụ bạn quan tâm. Chúng tôi luôn sẵn lòng lắng nghe và hỗ trợ bạn ! "</li>
+                        <li class="small" style="margin-top:10px"><span class="fa-li"><i class="fas fa-lg fa-phone" style="margin-right:30px"></i></span> 0777749922</li>
+                    </ul>
+                </div>
+            </div>
+            <hr style="background-color:deepskyblue;width:100%;height:5px;">
+
+
+
+            @* dia chi *@
+            <div class="row">
+                <h2 class="text-center text-uppercase" style="color:Highlight">DINH KHANG STORE</h2><br /><br />
+                <div class="col-md-5">
+                    <br /><h5 style="font-size:16px">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                            <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
+                            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                        </svg>
+                        206 Dương Đình Hội, phường Phước Long B, TP.Thủ Đức
+                    </h5>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.8041645896187!2d106.7783993146231!3d10.826293792287748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317526fd10b5fb89%3A0xc4b67a6d5bea1a6c!2zMjA2IETGsMahbmcgxJDDrG5oIEjhu5lpLCBQaMaw4bubYyBMb25nIEIsIFF14bqtbiA5LCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmgsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1651240674183!5m2!1svi!2s" width="500" height="280" style="border:solid;border-color:dodgerblue" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="col-md-3" style="margin-left:100px">
+                    <br />
+                    <b style="font-size: 18px; color: darkblue; font-style: italic;margin-left:20px ">THÔNG TIN LIÊN HỆ</b><br /><br />
+                    <p class=""><i class="fas fa-phone-alt"></i>&nbsp 0123456789</p>
+                    <p>
+                        <i class="fa fa-envelope"></i> &nbsp dinhkhangstore@gmail.com
+
+                    </p>
+                    <p class=""><i class="far fa-clock"></i>&nbsp Giờ làm việc</p>
+                    <p>Thứ 2 - Thứ 7 : 8h30 - 21h </p><p>&nbsp&nbspChủ nhật&nbsp&nbsp&nbsp&nbsp&nbsp: &nbsp&nbsp9h - 17h</p>
+
+                </div>
+                <div class="col-md-3">
+                    <br />
+                    <b style="font-size:18px;color:darkblue;font-style:italic;margin-left:35px">THÔNG TIN TÀI KHOẢN</b><br /><br />
+                    <p class="">&nbsp <b style="font-size:15px">Ngân hàng TMCP Tiên Phong (TPBank)</b></p>
+                    <p class="">&nbsp <b>Chủ TK:</b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspDINH KHANG STORE</p>
+                    <p class="">&nbsp  <b>MST:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp0310697334</p>
+                    <p class="">&nbsp  <b>STK:</b> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp03015261701</p>
+                    <p class="">&nbsp  <b>Chi nhánh:</b> &nbsp&nbsp&nbsp&nbspTPHCM</p>
+
+
+
+                </div>
+            </div>
+
+
+
+
+
+            <hr style="background-color:deepskyblue;width:100%;height:5px;">
+
+            @* form lien he *@
+            <div class="row">
+
+
+                <div class="col-md-5 p-md-4" style="margin-left:385px">
+                    <h2 class="text-uppercase text-center" style="color:darkslateblue">Liên hệ - Góp ý</h2>
+                    <form>
+                        <br />
+                        @Html.Partial("Message")
+<br />
+                        <span class="text-danger" style="font-weight: bold; font-size: 14px;font-style:italic">*Lưu ý: Nếu thông tin liên hệ thay đổi, vui lòng cập nhật lại</span><hr style="height:3px" />
+
+                        <div class="mb-2">
+                            <label for="exampleInputEmail1" class="form-label">Họ tên</label>
+                            <input required name="fullname" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="@user.FullName">
+                        </div>
+                        <div class="mb-2">
+                            <label for="exampleInputEmail1" class="form-label">Email</label>
+                            <input required name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="@user.Email">
+                        </div>
+                        <div class="mb-2">
+                            <label for="exampleInputPassword1" class="form-label">Điện thoại</label>
+                            <input required name="phone" type="number" class="form-control" id="exampleInputPassword1" value="@user.Phone">
+                        </div>
+                        <div class="mb-2">
+                            <label for="exampleInputPassword1" class="form-label">Tiêu đề</label>
+                            <input  required name="title" type="text" maxlength="100" class="form-control" id="exampleInputPassword1" value="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Nội dung</label>
+                            <textarea required class="form-control" id="exampleFormControlTextarea1" name="detail" rows="3"></textarea>
+                        </div>
+                        <div class="mb-2 nav justify-content-center">
+                            <button type="submit" class="text-uppercase btn btn-success" style="width:100px;">GỬI ĐI</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+}

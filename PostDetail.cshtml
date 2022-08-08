@@ -1,0 +1,52 @@
+﻿@model MyClass.Models.Post
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+<div class="container my-5">
+    <br><h2 class="title text-center text-uppercase" style="color:red;">@Model.Title</h2>        <hr style="background-color: rgba(0, 0, 0, 0.959);height:3px;">
+
+    <br>
+    <div class="row" style="margin-left:280px">
+        <div class="col-md-9">
+            @Html.Raw(Model.Detail)
+        </div>
+    </div>
+    @if (Model.Created_At == null)
+    {
+        <b>Người đăng: Đình Khang</b><b style="margin-left:70%">@Model.Updated_At</b><br /><br />
+
+    }
+
+    else
+    {
+        <hr /><b>Người đăng: Đình Khang</b><b style="margin-left:70%">@Model.Created_At</b><br /><br />
+   
+    }
+    @*plugin fb*@
+    <div class="row">
+        <div class="col-12">
+            <div class="fb-like" data-href="~/@Model.Slug" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
+        </div>
+        <div class="col-12">
+            <div class="fb-comments" data-href="https://www.facebook.com/@Model.Slug" data-width="100%" data-numposts="5"></div>
+        </div>
+    </div>
+
+    <hr style="background-color: rgba(0, 0, 0, 0.959);height:3px;">
+
+    <br><h4> BÀI VIẾT CÙNG CHỦ ĐỀ</h4>
+    <ul>
+        @foreach (var post in ViewBag.ListOther)
+        {
+
+            <li>
+                <h5>
+                    <a style="text-decoration:none" href="@post.Slug">@post.Title</a>
+
+                </h5>
+            </li>
+        }
+    </ul>
+</div>

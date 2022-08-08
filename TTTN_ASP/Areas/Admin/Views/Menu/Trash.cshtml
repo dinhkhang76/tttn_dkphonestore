@@ -1,0 +1,71 @@
+﻿@model IEnumerable<MyClass.Models.Menu>
+
+@{
+    ViewBag.Title = "Thùng rác Menu";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section header {
+    <link href="~/Public/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+@section footer {
+    <script src="~/Public/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content my-2">
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-6"><span class="text-danger" style="font-size:18px;font-weight:bold">THÙNG RÁC MENU</span></div>
+                    <div class="col-6 col-md-6 text-right">
+                        <a href="@Url.Action("Index","Menu")" class="btn btn-sm btn-info"><i class="fas fa-arrow-left"></i>&nbsp&nbspVề danh sách</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                @Html.Partial("Message")
+                <table class="table table-bordered table-striped" id="myTable">
+                    <thead>
+                        <tr class="bg-info">
+                            <th>Tên menu</th>
+                            <th>Liên kết</th>
+                            <th>Kiểu menu</th>
+                            <th>Vị trí</th>
+                            <th class="text-center">Chức năng</th>
+                            <th class="text-center">ID</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Link</td>
+                            <td>@item.TypeMenu</td>
+                            <td>@item.Position</td>
+                            <td class="text-center">
+                                <a href="@Url.Action("ReTrash","Menu", new { id = item.Id })" class="btn btn-sm btn-success"><i class="fas fa-undo-alt"></i></a>
+                                <a href="@Url.Action("Delete","Menu", new { id = item.Id })" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                            </td>
+                            <td class="text-center">@item.Id</td>
+
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

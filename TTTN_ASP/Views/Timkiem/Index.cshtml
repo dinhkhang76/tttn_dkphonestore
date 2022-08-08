@@ -1,0 +1,78 @@
+﻿@model IEnumerable<MyClass.Models.ProductInfo>
+@{
+    ViewBag.Title = "Kết quả tìm kiếm";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+<section class="maincontent clearfix">
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-md-3 col-lg-3">
+                <div class="sidebar" style="margin-top:20px">
+                    @Html.Action("ListCategory", "Module")
+                    @*@Html.Action("PostLastNews", "Module")*@
+
+
+
+                </div>
+            </div>
+
+            <div class="col-md-7 col-lg-9">
+                <div class="container">
+                    <div class="row mt-5">
+                        <div class="list-product-subtitle">
+                        </div>
+                        <br><h2 class="text-uppercase text-center text-primary">Kết quả tìm kiếm với từ khóa "<b>@ViewBag.Keyword"</b></h2><br><br><br />
+
+                        <div class="product-group">
+                            <div class="row">
+                                @foreach (var product in Model)
+                                {
+
+
+
+                                    <div class="col-md-4 col-sm-6 col-12">
+                                        <div class="card card-product">
+                                            <a href="~/@product.Slug">
+                                                <img class="card-img-top imt-fluid" src="~/Public/images/products/@product.Img" alt="Card image cap">
+                                            </a>
+                                            <div class="card-body">
+                                                <h5 class="card-title text-dark text-center"><a href="~/@product.Slug" class="text-dark" style="text-decoration:none">@product.Name</a></h5><hr />
+                                                <div class="product-price text-center text-dark">
+                                                    <strong class="text-danger">@string.Format("{0:0,0}", product.PriceSale)<sup>đ</sup></strong>
+                                                    <del class="text-dark"><span class="text-secondary">@string.Format("{0:0,0}", product.Price)</span></del><sup>đ</sup>
+                                                </div>
+                                                <div class="btn-group w-100" role="group" aria-label="Basic example">
+                                                    <br><a href="@Url.Action("CartAdd", "Giohang", new { @productid = product.Id })" class="btn btn-outline-success"><i class="fas fa-shopping-cart"></i></a>&nbsp
+                                                    <a href="~/@product.Slug" class="btn btn-outline-info"><i class="fas fa-eye"></i></a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </div>
+                                    <br>
+                                }
+
+                            </div>
+
+                            @*<div class="row">
+                                <div class="col-12 text-center">
+                                    Trang @(Model.PageCount <Model.PageNumber ?0 :Model.PageNumber)/@Model.PageCount
+                                    @Html.PagedListPager(Model, page => Url.Action("Index", "Site", new { page }))
+                                </div>
+                            </div>*@
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</section>

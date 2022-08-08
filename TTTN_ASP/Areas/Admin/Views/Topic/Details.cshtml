@@ -1,0 +1,105 @@
+﻿@model MyClass.Models.Topic
+
+@{
+    ViewBag.Title = "Chi tiết chủ đề bài viết";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <!-- Main content -->
+    <section class="content my-2">
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong class="text-danger" style="font-size:22px">
+                            CHI TIẾT CHỦ ĐỀ BÀI VIẾT
+                        </strong>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a href="@Url.Action("Edit","Topic",new { id = Model.Id })" class="btn btn-sm btn-warning"><i class="fas fa-edit">&nbspCập nhật</i></a>
+                        <a href="@Url.Action("Index","Topic")" class="btn btn-sm btn-info"><i class="fas fa-arrow-left"></i>&nbsp&nbspVề danh sách</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-striped">
+                    <tr class="bg-gradient-info">
+                        <th style="width:200px">Tên trường</th>
+                        <th>Nội dung</th>
+                    </tr>
+                    <tr>
+                        <td>ID</td>
+                        <td>@Html.DisplayFor(model => model.Id)</td>
+                    </tr>
+                    <tr>
+                        <td>Tên chủ đề</td>
+                        <td>@Html.DisplayFor(model => model.Name)</td>
+                    </tr>
+                    <tr>
+                        <td> @Html.DisplayNameFor(model => model.Slug)</td>
+                        <td> @Html.DisplayFor(model => model.Slug)</td>
+                    </tr>
+                    <tr>
+                        <td>Cấp cha</td>
+                        @if (Model.ParentId == 1)
+                        {
+                            <td>Tin tức</td>
+
+                        }
+                        @if (Model.ParentId == 3)
+                        {
+                            <td>Dịch vụ</td>
+                        }
+                        @if (Model.ParentId == 0)
+                        {
+                            <td>Không</td>
+                        }
+                    </tr>
+                    <tr>
+                        <td>Mô tả</td>
+                        <td>@Html.DisplayFor(model => model.MetaDesc)</td>
+                    </tr>
+                    <tr>
+                        <td>Từ khóa</td>
+                        <td>@Html.DisplayFor(model => model.MetaKey)</td>
+                    </tr>
+                   
+                    <tr>
+                        <td>Ngày tạo</td>
+                        <td>@Html.DisplayFor(model => model.Created_At)</td>
+                    </tr>
+                  
+                    <tr>
+                        <td>Ngày cập nhật</td>
+                        <td>@Html.DisplayFor(model => model.Updated_At)</td>
+                    </tr>
+                    <tr>
+                        <td>Trạng thái</td>
+                        @if (Model.Status == 1)
+                        {
+                            <td>Xuất bản</td>
+
+                        }
+                        else
+                        {
+                            <td>Không xuất bản</td>
+
+                        }
+                    </tr>
+                </table>
+
+            </div>
+            <!-- /.card-body -->
+
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

@@ -1,0 +1,89 @@
+﻿@model IEnumerable<MyClass.Models.Post>
+@{
+    ViewBag.Title = "Thùng rác trang đơn";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section header {
+    <link href="~/Public/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+@section footer {
+    <script src="~/Public/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content my-2">
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong class="text-danger text-uppercase" style="font-size:22px">
+                            THÙNG RÁC TRANG ĐƠN
+                        </strong>
+                    </div>
+                    <div class="col-6 col-md-6 text-right">
+                        <a href="@Url.Action("Index","Page")" class="btn btn-sm btn-info"><i class="fas fa-arrow-left"></i>&nbsp&nbspVề danh sách</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                @Html.Partial("Message")
+                <table class="table table-bordered table-striped" id="myTable">
+                    <thead>
+                        <tr class="bg-gradient-info">
+                            <th class="text-center" style="width:120px;">Hình ảnh</th>
+
+                            <th class="text-center">
+                                Tiêu đề trang đơn
+                            </th>
+
+                            <th class="text-center">
+                                Ngày tạo
+                            </th>
+                            <th class="text-center" style="width:180px;">Chức năng</th>
+                            <th class="text-center" style="width:30px;">ID</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="~/Public/images/pages/@item.Img" class="img-fluid" alt="@item.Slug" />
+
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Created_At)
+                                </td>
+                                <td class="text-center">
+                                    <a href="@Url.Action("Retrash","Page",new { id = item.Id })" class="btn btn-sm btn-success"><i class="fas fa-undo-alt"></i></a>
+                                    <a href="@Url.Action("Delete","Page",new { id = item.Id })" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+
+                                </td>
+                                <td class="text-center">@item.Id</td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

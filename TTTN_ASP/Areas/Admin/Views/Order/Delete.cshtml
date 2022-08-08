@@ -1,0 +1,136 @@
+﻿@model MyClass.Models.Order
+
+@{
+    ViewBag.Title = "Chi tiết đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content my-2">
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-6"><strong class="text-primary" style="font-size:22px"> XÓA ĐƠN HÀNG</strong></div>
+                    <div class="col-6 col-md-6 text-right">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-actions no-color">
+                                <button class="btn btn-sm btn-danger mx-0" type="submit"><i class="fas fa-trash-alt"></i><b>&nbsp&nbspXóa</b></button>
+                                @*<a href="@Url.Action("Edit","Product",new { id = Model.Id })" class="btn btn-sm btn-warning"><i class="fas fa-edit">&nbspCập nhật</i></a>*@
+                                <a href="@Url.Action("Trash","Order")" class="btn btn-sm btn-info"><i class="fas fa-arrow-left"></i>&nbsp&nbspVề danh sách</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <span style="font-weight:bold;color:red;font-size:18px;margin-top:20px;margin-left:30px">Bạn có chắc muốn xóa đơn hàng này không?</span><hr />
+
+            <div class="card-body">
+
+                <h4 class=" text-center"><b class=" text-primary text-uppercase">THÔNG TIN NGƯỜI NHẬN</b></h4><br />
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td>Mã đơn hàng</td>
+                        <td>@Model.Id</td>
+                    </tr>
+                    <tr>
+                        <td>Mã khách hàng</td>
+                        <td>@Model.UserId</td>
+                    </tr>
+                    <tr>
+                        <td> Họ tên</td>
+                        <td>@Model.DeliveryName</td>
+
+                        @*<td>@Html.Action("NameCustomer", "User", new { userid = Model.UserId })</td>*@
+                    </tr>
+                    <tr>
+                        <td> Địa chỉ</td>
+                        <td>@Model.DeliveryAddress</td>
+
+                        @*<td>@Html.Action("AddressCustomer", "User", new { userid = Model.UserId })</td>*@
+                    </tr>
+                    <tr>
+                        <td> Email</td>
+                        <td>@Model.DeliveryEmail</td>
+
+                        @*<td>@Html.Action("EmailCustomer", "User", new { userid = Model.UserId })</td>*@
+                    </tr>
+                    <tr>
+                        <td>Số điện thoại</td>
+                        <td>@Model.DeliveryPhone</td>
+
+                        @*<td>@Html.Action("PhoneCustomer", "User", new { userid = Model.UserId })</td>*@
+                    </tr>
+                    <tr>
+                        <td>Ghi chú</td>
+                        @if (Model.Note == null || Model.Note == "")
+                        {
+                            <td>Không có ghi chú</td>
+                        }
+
+                        else
+                        {
+                            <td><b>@Model.Note</b></td>
+
+                        }
+                    </tr>
+                </table><br /><hr style="height:3px;background-color:khaki" /><br />
+                <h4 class=" text-center"><b class="text-primary">THÔNG TIN GIỎ HÀNG</b></h4><br />
+                <table class="table table-bordered ">
+                    <thead>
+                        <tr class="" style="background-color:lightskyblue;">
+                            <th class="text-center" style="width:120px">Mã sản phẩm</th>
+                            <th class="text-center" style="width:160px;">Hình ảnh</th>
+                            <th class="text-center">Tên sản phẩm</th>
+                            <th class="text-center" style="width:100px">Số lượng</th>
+                            <th class="text-center">Đơn giá</th>
+                            <th class="text-center">Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ decimal tongtien = 0;}
+                        @foreach (var ct in ViewBag.ListChiTiet)
+                        {
+                            <tr>
+                                <td class="text-center">@ct.ProductId</td>
+                                <td><img src="~/Public/images/products/@Html.Action("ProductImg", "Product", new { productid = ct.ProductId })" class="img-fluid" /></td>
+                                <td class="text-center">@Html.Action("ProductName", "Product", new { productid = ct.ProductId })</td>
+                                <td class="text-center">@ct.Qty</td>
+                                <td class="text-center" style="margin-left:30px">@String.Format("{0:0,0}", ct.PriceSale)<sup class="text-dark">đ</sup></td>
+                                <td class="text-center">@String.Format("{0:0,0}", ct.Amount)<sup class="text-dark">đ</sup></td>
+                            </tr>
+                            tongtien += ct.Amount;
+                        }
+                    </tbody>
+                    <tfoot>
+
+                        <tr>
+
+                            <th colspan="7" class="text-center">
+                                Tổng cộng:<a class="text-danger" style="font-size:17px;text-decoration:none"> @String.Format("{0:0,0}", tongtien)<sup>đ</sup></a>
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table><br /><hr style="height:3px;background-color:khaki" /><br />
+                <h4 class=" text-center"><b class="text-primary">TRẠNG THÁI ĐƠN HÀNG</b></h4><br />
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td>Trạng thái</td>
+                        @if (Model.Status == 0)
+                        {
+                            <td>Đơn hàng đã bị hủy</td>
+                        }
+                    </tr>
+                </table><br />
+
+            </div>
+        </div>
+        <!-- /.card -->
+    </section>
+    <!-- /.content -->
+</div>

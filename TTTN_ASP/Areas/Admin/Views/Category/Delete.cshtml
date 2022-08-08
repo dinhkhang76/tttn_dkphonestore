@@ -1,0 +1,106 @@
+﻿@model MyClass.Models.Category
+
+@{
+    ViewBag.Title = "Xóa danh mục sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content my-2">
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <did class="row">
+                    <did class="col-6"><strong class="text-primary" style="font-size:22px"> XÓA DANH MỤC SẢN PHẨM</strong></did>
+                    <did class="col-6 col-md-6 text-right">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <button class="btn btn-sm btn-danger mx-0" type="submit"><i class="fas fa-trash-alt"></i><b>&nbsp&nbspXóa</b></button>
+                            <a href="@Url.Action("Index","Category")" class="btn btn-sm btn-info"><i class="fas fa-arrow-left"></i>&nbsp&nbspVề danh sách</a>
+                        </div>
+                        }
+                    </did>
+                </did>
+            </div>
+            <div class="card-body">
+                <span style="font-weight:bold;color:red;font-size:20px">Bạn có chắc muốn xóa danh mục này không?</span>
+                <table class="table table-bordered table-striped">
+                    <tr class="bg-gradient-info">
+                        <th style="width:200px">Tên trường</th>
+                        <th>Nội dung</th>
+                    </tr>
+                    <tr>
+                        <td>ID</td>
+                        <td>@Html.DisplayFor(model => model.Id)</td>
+                    </tr>
+                    <tr>
+                        <td>Tên danh mục</td>
+                        <td>@Html.DisplayFor(model => model.Name)</td>
+                    </tr>
+                    <tr>
+                        <td> @Html.DisplayNameFor(model => model.Slug)</td>
+                        <td> @Html.DisplayFor(model => model.Slug)</td>
+                    </tr>
+                    <tr>
+                        <td>Cấp cha</td>
+                        @if (Model.ParentId == 1)
+                        {
+                            <td>Điện thoại</td>
+
+                        }
+                        @if (Model.ParentId == 2)
+                        {
+                            <td>Tablet</td>
+
+                        }
+                        @if (Model.ParentId == 3)
+                        {
+                            <td>Phụ kiện</td>
+
+                        }
+                    </tr>
+
+                    <tr>
+                        <td>Mô tả</td>
+                        <td>@Html.DisplayFor(model => model.MetaDesc)</td>
+                    </tr>
+                    <tr>
+                        <td>Từ khóa </td>
+                        <td>@Html.DisplayFor(model => model.MetaKey)</td>
+                    </tr>
+
+                    <tr>
+                        <td>Ngày tạo</td>
+                        <td>@Html.DisplayFor(model => model.Created_At)</td>
+                    </tr>
+
+                    <tr>
+                        <td>Ngày cập nhật</td>
+                        <td>@Html.DisplayFor(model => model.Updated_At)</td>
+                    </tr>
+                    <tr>
+                        <td>Trạng thái</td>
+                        @if (Model.Status == 1)
+                        {
+                            <td>Xuất bản</td>
+
+                        }
+                        else
+                        {
+                            <td>Không xuất bản</td>
+
+                        }
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>

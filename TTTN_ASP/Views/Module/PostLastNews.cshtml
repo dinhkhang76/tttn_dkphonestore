@@ -1,0 +1,31 @@
+﻿@model IEnumerable<MyClass.Models.PostInfo>
+
+
+@* module bai viet *@
+<div class="listcategory mb-4">
+    <div class="card" style="width:100%">
+        <div class="card-header bg-warning text-center" style="font-weight: bold">
+            DANH SÁCH BÀI VIẾT
+        </div>
+        <ul class="list-group list-group-flush">
+            @foreach (var post in Model)
+            {
+                <li class="list-group-item">
+                    <div class="row mb-3">
+                        <div class="col-sm-4">
+                            <img src="" class="img-fluid" alt="" srcset="" />
+                        </div>
+                        <div class="col-sm-8 pr-0 mr-0">
+                            <h5 class="post-title">
+                                <a href="~/Public/images/posts/@post.Img" style="text-decoration: none">@post.Title</a>
+                            </h5>
+                        </div>
+                    </div>
+                </li>
+            }
+            @*<li class="list-group-item">
+                    <a href="" class="text-dark " style="text-decoration: none">nhà cung cấp 1</a>
+                </li>*@
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,114 @@
+﻿@model IEnumerable<MyClass.Models.ProductInfo>
+
+@{
+    ViewBag.Title = "Tất cả sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section header {
+    <link href="~/Public/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content my-2">
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong class="text-danger text-uppercase" style="font-size:22px">
+                           TẤT CẢ SẢN PHẨM
+                        </strong>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a href="@Url.Action("Create","Product")" class="btn btn-sm btn-success"><i class="fas fa-plus"></i>&nbsp Thêm</a>
+                        <a href="@Url.Action("Trash","Product")" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i>&nbsp&nbspThùng rác</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                @Html.Partial("Message")
+                <table class="table table-bordered table-striped" id="myTable">
+                    <thead>
+                        <tr class="bg-gradient-info">
+
+
+                            <th class="text-center " style="width:120px;">
+                                Hình ảnh
+                            </th>
+                            <th class="text-center">
+
+                                Tên sản phẩm
+                            </th>
+                            <th class="text-center">
+                                Tên danh mục
+                            </th>
+                            <th class="text-center">
+                                Ngày tạo
+                            </th>
+                            <th class="text-center" style="width:180px;">
+                                Chức năng
+                            </th>
+                            <th class="text-center" style="width:20px;">
+                                ID
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+                        <tr>
+                            <td>
+                                <img src="~/Public/images/products/@item.Img" alt="@item.Slug" class="img-fluid" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CatName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Created_At)
+                            </td>
+                            <td class="text-center">
+                                @if (item.Status == 1)
+                                {
+                                    <a href="@Url.Action("Status","Product",new { id = item.Id })" class="btn btn-sm btn-success"><i class="fas fa-toggle-on"></i></a>
+
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Status","Product",new { id = item.Id })" class="btn btn-sm btn-danger"><i class="fas fa-toggle-off"></i></a>
+
+                                }
+                                <a href="@Url.Action("Details","Product",new { id = item.Id })" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+                                <a href="@Url.Action("Edit","Product",new { id = item.Id })" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                                <a href="@Url.Action("DelTrash","Product",new { id = item.Id })" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+
+
+                            </td>
+                            <td class="text-center">@item.Id</td>
+
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+@section footer {
+    <script src="~/Public/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+}

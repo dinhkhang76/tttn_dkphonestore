@@ -1,0 +1,233 @@
+﻿@model PagedList.IPagedList<MyClass.Models.PostInfo>
+@{
+    ViewBag.Title = "Tất cả bài viết";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+@using PagedList.Mvc;
+
+<section class="maincontent clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+
+            </div>
+
+            <div class="col-md-4 col-lg-9">
+                <div class="container">
+                    <br><br><h1 class="text-uppercase text-center" style="color:red;margin-right:50px">TẤT CẢ BÀI VIẾT</h1><br>
+                    <hr style="background-color: rgba(112, 112, 112, 0.959);width:100%;height:5px;">
+
+                    <div class="row mt-5">
+                        <div class="list-product-subtitle">
+                        </div>
+                        <div class="product-group">
+                            <div class="row">
+                                @foreach (var post in Model)
+                                {
+
+
+                                    <div class="row my-3">
+                                        <div class="col-md-3">
+                                            <a href="@post.Slug">
+                                                <img class="card-img-top img-fluid img-thumbnail rounded-circle bg-info" style=" height: 200px; margin-bottom: 50px" src="~/Public/images/posts/@post.Img" alt="@post.Title">
+                                            </a>
+                                        </div>
+                                        <div class="col-md-9 ">
+                                            <a style="text-decoration: none" href="@post.Slug">
+                                                <h4 class="nav-link">@post.Title</h4>
+                                            </a>
+                                            <p>
+                                                @Html.Raw(@XString.Str_Limit(post.Detail, 400))
+                                                &nbsp&nbsp&nbsp&nbsp&nbsp <br><a class="btn btn-warning" style="text-decoration:none;font-weight:bold;text-align:center;font-size:12px;height:30px;width:85px" href="@post.Slug">Xem thêm</a><br><br>
+                                                <hr style="background-color: rgba(252, 193, 2, 0.959);height:3px;">
+
+                                            </p>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    Trang @(Model.PageCount <Model.PageNumber ?0 :Model.PageNumber)/@Model.PageCount
+                                    @Html.PagedListPager(Model, page => Url.Action("Post", "Site", new { page }))
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* css nút phân trang *@
+<style>
+    .pagination {
+        display: inline-block;
+        padding-left: 0;
+        margin: 20px 0;
+        border-radius: 4px;
+    }
+
+        .pagination > li {
+            display: inline;
+        }
+
+            .pagination > li > a,
+            .pagination > li > span {
+                position: relative;
+                float: left;
+                padding: 6px 12px;
+                margin-left: -1px;
+                line-height: 1.428571429;
+                text-decoration: none;
+                background-color: #ffffff;
+                border: 1px solid #dddddd;
+            }
+
+            .pagination > li:first-child > a,
+            .pagination > li:first-child > span {
+                margin-left: 0;
+                border-bottom-left-radius: 4px;
+                border-top-left-radius: 4px;
+            }
+
+            .pagination > li:last-child > a,
+            .pagination > li:last-child > span {
+                border-top-right-radius: 4px;
+                border-bottom-right-radius: 4px;
+            }
+
+            .pagination > li > a:hover,
+            .pagination > li > span:hover,
+            .pagination > li > a:focus,
+            .pagination > li > span:focus {
+                background-color: #eeeeee;
+            }
+
+        .pagination > .active > a,
+        .pagination > .active > span,
+        .pagination > .active > a:hover,
+        .pagination > .active > span:hover,
+        .pagination > .active > a:focus,
+        .pagination > .active > span:focus {
+            z-index: 2;
+            color: #ffffff;
+            cursor: default;
+            background-color: #428bca;
+            border-color: #428bca;
+        }
+
+        .pagination > .disabled > span,
+        .pagination > .disabled > a,
+        .pagination > .disabled > a:hover,
+        .pagination > .disabled > a:focus {
+            color: #999999;
+            cursor: not-allowed;
+            background-color: #ffffff;
+            border-color: #dddddd;
+        }
+
+    .pagination-lg > li > a,
+    .pagination-lg > li > span {
+        padding: 10px 16px;
+        font-size: 18px;
+    }
+
+    .pagination-lg > li:first-child > a,
+    .pagination-lg > li:first-child > span {
+        border-bottom-left-radius: 6px;
+        border-top-left-radius: 6px;
+    }
+
+    .pagination-lg > li:last-child > a,
+    .pagination-lg > li:last-child > span {
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+    }
+
+    .pagination-sm > li > a,
+    .pagination-sm > li > span {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+    .pagination-sm > li:first-child > a,
+    .pagination-sm > li:first-child > span {
+        border-bottom-left-radius: 3px;
+        border-top-left-radius: 3px;
+    }
+
+    .pagination-sm > li:first-child > a,
+    .pagination-sm > li:first-child > span {
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+    }
+
+    .pager {
+        padding-left: 0;
+        margin: 20px 0;
+        text-align: center;
+        list-style: none;
+    }
+
+        .pager:before,
+        .pager:after {
+            display: table;
+            content: "";
+        }
+
+        .pager:after {
+            clear: both;
+        }
+
+        .pager:before,
+        .pager:after {
+            display: table;
+            content: "";
+        }
+
+        .pager:after {
+            clear: both;
+        }
+
+        .pager li {
+            display: inline;
+        }
+
+            .pager li > a,
+            .pager li > span {
+                display: inline-block;
+                padding: 5px 14px;
+                background-color: #ffffff;
+                border: 1px solid #dddddd;
+                border-radius: 15px;
+            }
+
+                .pager li > a:hover,
+                .pager li > a:focus {
+                    text-decoration: none;
+                    background-color: #eeeeee;
+                }
+
+        .pager .next > a,
+        .pager .next > span {
+            float: right;
+        }
+
+        .pager .previous > a,
+        .pager .previous > span {
+            float: left;
+        }
+
+        .pager .disabled > a,
+        .pager .disabled > a:hover,
+        .pager .disabled > a:focus,
+        .pager .disabled > span {
+            color: #999999;
+            cursor: not-allowed;
+            background-color: #ffffff;
+        }
+</style>

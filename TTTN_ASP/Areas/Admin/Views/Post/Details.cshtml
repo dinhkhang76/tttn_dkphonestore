@@ -1,0 +1,114 @@
+﻿@model MyClass.Models.Post
+
+@{
+    ViewBag.Title = "Chi tiết bài viết";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- /.content-wrapper -->
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content my-2">
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong class="text-danger text-uppercase" style="font-size:22px">
+                            chi tiết bài viết
+                        </strong>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a href="@Url.Action("Edit","Post",new { id = Model.Id })" class="btn btn-sm btn-warning"><i class="fas fa-edit">&nbspCập nhật</i></a>
+                        <a href="@Url.Action("Index","Post")" class="btn btn-sm btn-info"><i class="fas fa-arrow-left"></i>&nbsp&nbspVề danh sách</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-striped">
+                    <tr class="bg-gradient-info">
+                        <th style="width:200px">Tên trường</th>
+                        <th>Nội dung</th>
+                    </tr>
+                    <tr>
+                        <td>ID</td>
+                        <td>@Html.DisplayFor(model => model.Id)</td>
+                    </tr>
+                    <tr>
+                        <td>Chủ đề bài viết</td>
+                        @if (Model.TopicId == 1)
+                        {
+                            <td>
+                                Tin tức
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                Dịch vụ
+                            </td>
+                        }
+                    </tr>
+
+                    <tr>
+                        <td>Tiêu đề bài viết</td>
+                        <td>@Html.DisplayFor(model => model.Title)</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Slug)</td>
+                        <td>@Html.DisplayFor(model => model.Slug)</td>
+                    </tr>
+                    <tr>
+                        <td>Chi tiết</td>
+                        <td>@Html.Raw(Model.Detail) </td>
+                    </tr>
+                    <tr>
+                        <td>Hình ảnh</td>
+                        <td><img src="~/Public/images/posts/@Model.Img" style="width:120px"/></td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.PostType)</td>
+                        <td>@Html.DisplayFor(model => model.PostType)</td>
+                    </tr>
+                    <tr>
+                        <td>Mô tả</td>
+                        <td>@Html.DisplayFor(model => model.MetaDesc)</td>
+                    </tr>
+                    <tr>
+                        <td>Từ khóa</td>
+                        <td>@Html.DisplayFor(model => model.MetaKey)</td>
+                    </tr>
+
+                    <tr>
+                        <td>Ngày tạo</td>
+                        <td>@Html.DisplayFor(model => model.Created_At)</td>
+                    </tr>
+
+                    <tr>
+                        <td>Ngày cập nhật</td>
+                        <td> @Html.DisplayFor(model => model.Updated_At)</td>
+                    </tr>
+                    <tr>
+                        <td>Trạng thái</td>
+                        @if (Model.Status == 1)
+                        {
+                            <td>Xuất bản</td>
+
+                        }
+                        else
+                        {
+                            <td>Không xuất bản</td>
+
+                        }
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

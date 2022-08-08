@@ -1,0 +1,295 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Public/css/LayoutSite.css" rel="stylesheet" />
+    <link href="~/Public/css/style.css" rel="stylesheet" />
+    <link href="~/Public/css/all.min.css" rel="stylesheet" />
+    <link href="~/Public/css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Public/css/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="~/Public/css/ionicons.min.css" rel="stylesheet" />
+    <link href="~/Public/css/linearicons.css" rel="stylesheet" />
+    <script src="~/Public/js/owl.carousel.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Public/js/jquery-3.6.0.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    @*<script src="~/Public/js/script.js"></script>*@
+    <script src="~/Public/js/all.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    @*nút back to top*@
+    <button onclick="topFunction()" id="myBtn" title="Lên đầu trang"><i class="fas fa-arrow-up text-dark"></i></button>
+
+    <style>
+
+        #myBtn {
+            display: none;
+            position: fixed;
+            bottom: 25px;
+            right: 20px;
+            z-index: 99;
+            font-size: 25px;
+            border: none;
+            outline: none;
+            background-color: rgb(8, 136, 241);
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+            #myBtn:hover {
+                background-color: rgba(19, 160, 255, 0.479);
+            }
+    </style>
+
+
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("myBtn").style.display = "block";
+            } else {
+                document.getElementById("myBtn").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    @*end back to top*@
+
+    @*JavaScript SDK plugin facebook*@
+
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v13.0" nonce="b2iQn3KP"></script>
+
+
+
+    @RenderSection("header", required: false)
+</head>
+<body>
+
+
+
+    <section class="header clearfix">
+        <div class="container ">
+            <div class="row">
+                <div class="col-md-2">
+                    @*Logo*@
+                    <a href="~/trang-chu"><img src="~/Public/images/logodkstore.png" class="img-fluid img-" alt="logo" style="height:140px;width:140px"></a>
+                </div>
+                <div class="col-md-4 mx-xxl-auto ">
+                    @*thanh tìm kiếm*@
+                    <form class="d-flex my-5" action="~/tim-kiem" method="GET" enctype="multipart/form-data">
+                        <input class="form-control me-2" type="search" placeholder="Tìm kiếm" aria-label="search" for="search" id="txtKeyword" name="keyword">
+                        <button class="btn btn-outline-warning" type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <div class="col-md-5 my-4 col-xl-auto">
+                    @*đăng kí đăng nhập*@
+
+                    @if (Session["UserCustomer"].Equals(""))
+                    {
+                        <a href="~/dang-nhap" class="btn btn-primary position-relative">
+                            <i class=" fas fa-sign-in-alt"></i>
+                            Đăng nhập
+                        </a>
+                        <a href="~/dang-ky" class="btn btn-primary position-relative">
+                            <i class=" fas fa-user"></i>
+                            Đăng ký &nbsp
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="btn  dropdown-toggle" style="font-weight:bold;font-size:16px;color:black" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Xin chào @Session["NameCustomer"].ToString()
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark " href="~/thong-tin"><i class="fas fa-user text-primary" style="width:20px;height:16px;font-size:20px"></i> &nbsp&nbspThông tin của tôi</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark " href="~/don-hang">
+                                    <svg style="margin-left:2px"xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box2 text-primary" viewBox="0 0 16 16">
+                                        <path d="M2.95.4a1 1 0 0 1 .8-.4h8.5a1 1 0 0 1 .8.4l2.85 3.8a.5.5 0 0 1 .1.3V15a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4.5a.5.5 0 0 1 .1-.3L2.95.4ZM7.5 1H3.75L1.5 4h6V1Zm1 0v3h6l-2.25-3H8.5ZM15 5H1v10h14V5Z" />
+                                    </svg> &nbsp&nbsp&nbspĐơn hàng của tôi
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="~/dang-xuat">  <i class=" fas fa-sign-out-alt text-danger" style="width: 20px; height: 17px; margin-left: 2px"></i>&nbsp&nbsp&nbspĐăng xuất</a>
+                            </li>
+                        </ul>
+                    }
+
+
+
+
+                    @*Giỏ hàng*@
+                    @{
+                        int soluong = 0;
+                        if (!System.Web.HttpContext.Current.Session["MyCart"].Equals(""))
+                        {
+                            List<CartItem> listcart = (List<CartItem>)System.Web.HttpContext.Current.Session["MyCart"];
+                            soluong = listcart.Count();
+                        }
+
+                    }
+                    @*@{
+                            decimal tongtien = 0;
+                            if (!System.Web.HttpContext.Current.Session["MyCart"].Equals(""))
+                            {
+                                List<CartItem> cart = (List<CartItem>)System.Web.HttpContext.Current.Session["MyCart"];
+                                tongtien += cart[1].Qty * cart[1].PriceSale;
+                            }
+                        }*@
+
+                    <a href="~/gio-hang" class="btn btn-success position-relative">
+                        <i class=" fas fa-shopping-cart"></i> (@soluong) @*- @String.Format("{0:0,0}", tongtien)*@
+                        @*<sup style="font-weight:bold;"><sup style="font-size:12px">đ</sup></sup>*@
+                        @*<span class="position-absolute top-0 start-100 translate-middle badge " style="background-color:orangered">
+                                @soluong
+                                <span class="visually-hidden"></span>
+                            </span>*@
+
+                    </a>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </section>
+
+    @*menu*@
+    <section class="mainmenu clearfix bg-warning">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1">
+
+                </div>
+                <div class="col-md-9">
+                    @Html.Action("MainMenu", "Module")
+                </div>
+            </div>
+        </div>
+    </section>
+    @*end menu*@
+
+
+
+
+
+
+    @RenderBody()
+
+
+    @* footer *@
+    <br /><br />
+    <section class="footer clearfix bg-dark text-white py-1">
+        <div class="container my-3">
+            <div class="row">
+                <div class="col-md-2 col-sm-12 col-xs-12">
+                    <div class="nav-item text-uppercase">
+                        <h5>
+                            <span class="text-warning">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspGiới thiệu</span>
+                        </h5>
+                    </div>
+                    <ul>
+                        <li class="text-warning"><a class="nav-link text-white" href="~/gioi-thieu">Về chúng tôi</a></li>
+                        <li class="text-warning"><a class="nav-link text-white" href="~/lien-he">Liên hệ</a></li>
+                    </ul>
+                </div>
+
+                @Html.Action("FooterMenu", "Module")
+
+
+                <div class="col-md-3">
+                    <div class="item text-uppercase">
+                        <h5>
+                            <span class="text-warning">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspTrợ giúp</span>
+                        </h5>
+                    </div>
+                    <ul>
+                        <li class="text-warning"><a class="nav-link text-white" href="huong-dan-thanh-toan">Hướng dẫn thanh toán</a></li>
+                        <li class="text-warning"><a class="nav-link text-white" href="quy-dinh-doi-tra">Quy định đổi trả - hoàn tiền</a></li>
+                        <li class="text-warning"><a class="nav-link text-white" href="chinh-sach-bao-hanh">Chính sách bảo hành</a></li>
+
+                    </ul>
+                </div>
+                <div class="footer-box box-address col-md-3 col-sm-12 col-xs-12">
+                    <div class="item text-uppercase">
+                        <h5>
+                            <span class="text-warning">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspThông tin </span>
+                        </h5>
+                        <div class="box-address-content">
+                            <b>DINH KHANG STORE</b>
+                            <p><i class="fa fa-map-marker"></i>  &nbsp &nbsp206 Dương Đình Hội, phường<br />  Phước Long B, TP Thủ Đức</p>
+                            <p>
+                                <i class="fa fa-envelope"></i> &nbsp dinhkhang@gmail.com
+
+                            </p>
+                            <p>
+                                <i class="fa fa-phone"></i>
+                                &nbsp&nbsp0123456798
+                            </p>
+                            <p><i class="far fa-clock"></i>&nbsp&nbspGiờ làm việc:</p>
+                            <p>Thứ 2 - Thứ 7 : 8h30 - 21h </p><p>&nbsp&nbspChủ nhật&nbsp&nbsp&nbsp&nbsp&nbsp: &nbsp&nbsp9h - 17h</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class=" col-md col-sm-12 col-xs-12">
+                    <div class="item text-uppercase">
+                        @*<h5><span class="text-warning px-lg-5">Mạng xã hội</span></h5>*@
+                        <div class="nav-item">
+                            &nbsp
+                            <ul>
+
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f text-primary" style="font-size: 30px"></i></a>
+                                <br>
+                                <br>
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube text-danger" style="font-size: 30px"></i></a>
+                                <br>
+                                <br>
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+                                <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram text-danger" style="font-size: 30px"></i></a>
+                                <br>
+                                <br>
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+                                <a href="https://www.twitter.com/" target="_blank"><i class="fab fa-twitter text-info" style="font-size: 30px"></i></a>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <section class="copyright clearfix bg-secondary py-1">
+        <div class="test2">
+            &copy Design by Dinh Khang
+        </div>
+    </section>
+
+
+    @RenderSection("footer", required: false)
+
+</body>
+</html>

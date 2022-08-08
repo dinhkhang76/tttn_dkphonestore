@@ -1,0 +1,102 @@
+﻿@model MyClass.Models.Post
+
+@{
+    ViewBag.Title = "Xóa trang đơn";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Main content -->
+        <section class="content my-2">
+
+            <!-- Default box -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-6"><strong class="text-primary" style="font-size:22px"> XÓA TRANG ĐƠN</strong></div>
+                        <div class="col-6 col-md-6 text-right">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                            <div class="form-actions no-color">
+                                <button class="btn btn-sm btn-danger mx-0" type="submit"><i class="fas fa-trash-alt"></i><b>&nbsp&nbspXóa</b></button>
+                                <a href="@Url.Action("Index","Page")" class="btn btn-sm btn-info"><i class="fas fa-arrow-left"></i>&nbsp&nbspVề danh sách</a>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <span style="font-weight:bold;color:red;font-size:20px">Bạn có chắc muốn xóa trang đơn này không?</span>
+                    <table class="table table-bordered table-striped">
+                        <tr class="bg-gradient-info">
+                            <th style="width:200px">Tên trường</th>
+                            <th>Nội dung</th>
+                        </tr>
+
+                        <tr>
+                            <td>Tiêu đề trang đơn</td>
+                            <td>@Html.DisplayFor(model => model.Title)</td>
+                        </tr>
+                        @*<tr>
+                <td>@Html.DisplayNameFor(model => model.Slug)</td>
+                <td>@Html.DisplayFor(model => model.Slug)</td>
+            </tr>*@
+                        <tr>
+                            <td>Chi tiết trang đơn</td>
+                            <td>@Html.Raw(Model.Detail)</td>
+                        </tr>
+                        <tr>
+                            <td>Hình ảnh</td>
+                            <td><img src="~/Public/images/pages/@Model.Img" style="width:150px" /></td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayNameFor(model => model.PostType)</td>
+                            <td>@Html.DisplayFor(model => model.PostType)</td>
+                        </tr>
+                        <tr>
+                            <td>Từ khóa</td>
+                            <td>@Html.DisplayFor(model => model.MetaKey)</td>
+                        </tr>
+                        <tr>
+                            <td>Mô tả</td>
+                            <td>@Html.DisplayFor(model => model.MetaDesc)</td>
+                        </tr>
+                        <tr>
+                            <td>Ngày tạo</td>
+                            <td>@Html.DisplayFor(model => model.Created_At)</td>
+                        </tr>
+
+
+
+                        <tr>
+                            <td>Ngày cập nhật</td>
+                            <td> @Html.DisplayFor(model => model.Updated_At)</td>
+                        </tr>
+                        <tr>
+                            <td>Trạng thái</td>
+                            @if (Model.Status == 1)
+                            {
+                                <td>Xuất bản</td>
+
+                            }
+                            else
+                            {
+                                <td>Không xuất bản</td>
+
+                            }
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!-- /.card -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+}

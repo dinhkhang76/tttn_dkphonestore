@@ -1,0 +1,39 @@
+﻿@{
+    var user = ViewBag.user;
+}
+@{
+    ViewBag.Title = "Thông tin của tôi";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+<div class="container clearfix">
+    <div class="row p-2">
+        <h2 class="text-uppercase text-center" style="color:darkslateblue;margin-top:50px">Thông tin cá nhân</h2>
+        <hr style="background-color:dodgerblue;height:3px;margin-top:20px">
+
+        <div class="col-md-6 p-md-5" style="margin-left:330px">
+            <form>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label" style="font-weight:bold">Tên đăng nhập</label>
+                    <input readonly name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="@user.UserName">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label" style="font-weight:bold">Họ tên</label>
+                    <input readonly name="fullname" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="@user.FullName">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label" style="font-weight:bold">Email</label>
+                    <input readonly name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="@user.Email">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label" style="font-weight:bold">Điện thoại</label>
+                    <input readonly name="phone" type="text" class="form-control" id="exampleInputPassword1" value="@user.Phone">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label" style="font-weight:bold">Địa chỉ</label>
+                    <input readonly name="address" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="@user.Address">
+                </div>
+            </form>
+        </div>
+    </div>
+    @* end thong tin ca nhan *@
+</div>

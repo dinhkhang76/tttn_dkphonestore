@@ -1,0 +1,137 @@
+﻿@model MyClass.Models.User
+
+@{
+    ViewBag.Title = "Chi tiết người dùng";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- /.content-wrapper -->
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content my-2">
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong class="text-danger" style="font-size:22px">
+                            CHI TIẾT NGƯỜI DÙNG
+                        </strong>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a href="@Url.Action("Edit","User",new { id = Model.Id })" class="btn btn-sm btn-warning"><i class="fas fa-edit">&nbspCập nhật</i></a>
+                        <a href="@Url.Action("Index","User")" class="btn btn-sm btn-info"><i class="fas fa-arrow-left"></i>&nbsp&nbspVề danh sách</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-striped">
+                    <tr class="bg-gradient-info">
+                        <th style="width:200px">Tên trường</th>
+                        <th>Nội dung</th>
+                    </tr>
+                    <tr>
+                        <td>Hình đại diện</td>
+                        <td><img src="~/Public/images/users/@Html.DisplayFor(model => model.Img)" style="width:130px;"></td>
+                    </tr>
+                    <tr>
+                        <td>Họ tên</td>
+                        <td>@Html.DisplayFor(model => model.FullName)</td>
+                    </tr>
+                    <tr>
+                        <td>Giới tính</td>
+                        @if (Model.Gender == 1)
+                        {
+                            <td>Nam</td>
+
+                        }
+                        @if (Model.Gender == 2)
+                        {
+                            <td>Nữ</td>
+
+                        }
+                        @if (Model.Gender == 3)
+                        {
+                            <td>Khác</td>
+                        }
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>@Html.DisplayFor(model => model.Email)</td>
+                    </tr>
+                    <tr>
+                        <td>Số điện thoại</td>
+                        <td>@Html.DisplayFor(model => model.Phone)</td>
+                    </tr>
+                    <tr>
+                        <td>Địa chỉ</td>
+                        <td>@Html.DisplayFor(model => model.Address)</td>
+                    </tr>
+                    <tr>
+                        <td>Tên đăng nhập</td>
+                        <td>@Html.DisplayFor(model => model.UserName)</td>
+                    </tr>
+                    <tr>
+                        <td>Mật khẩu</td>
+                        <td>@Html.DisplayFor(model => model.Password)</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Quyền</td>
+                        @if (Model.Roles == "Customer")
+                        {
+                            <td>Khách hàng</td>
+
+                        }
+                        else
+                        {
+                            <td>Quản trị viên</td>
+                        }
+                    </tr>
+
+
+                    @*<tr>
+            <td>Đếm số lần sai</td>
+            <td>@Html.DisplayFor(model => model.CountError)</td>
+        </tr>*@
+                    @*<tr>
+            <td>Người tạo</td>
+            <td>@Html.DisplayFor(model => model.Created_By)</td>
+        </tr>*@
+                    <tr>
+                        <td>Ngày tạo</td>
+                        <td>@Html.DisplayFor(model => model.Created_At)</td>
+                    </tr>
+                    @*<tr>
+            <td>Người cập nhật</td>
+            <td>@Html.DisplayFor(model => model.Updated_By)</td>
+        </tr>*@
+                    <tr>
+                        <td>Ngày cập nhật</td>
+                        <td>@Html.DisplayFor(model => model.Updated_At)</td>
+                    </tr>
+                    <tr>
+                        <td>Trạng thái</td>
+                        @if (Model.Status == 1)
+                        {
+                            <td>Xuất bản</td>
+
+                        }
+                        else
+                        {
+                            <td>Không xuất bản</td>
+
+                        }
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

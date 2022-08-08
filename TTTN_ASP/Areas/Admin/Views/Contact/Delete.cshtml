@@ -1,0 +1,86 @@
+﻿@model MyClass.Models.Contact
+
+@{
+    ViewBag.Title = "Xoá liên hệ";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content my-2">
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-6"><strong class="text-primary" style="font-size:22px"> XÓA SẢN PHẨM</strong></div>
+                        <div class="col-6 col-md-6 text-right">
+                            <div class="form-actions no-color">
+                                <button class="btn btn-sm btn-danger mx-0" type="submit"><i class="fas fa-trash-alt"></i><b>&nbsp&nbspXóa</b></button>
+                                <a href="@Url.Action("Index","Contact")" class="btn btn-sm btn-info"><i class="fas fa-arrow-left"></i>&nbsp&nbspVề danh sách</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="card-body">
+                <span style="font-weight:bold;color:red;font-size:20px">Bạn có chắc muốn xóa liên hệ này không?</span>
+
+                <table class="table table-bordered table-striped">
+                    <tr class="bg-gradient-info">
+                        <th style="width:200px">Tên trường</th>
+                        <th>Nội dung</th>
+                    </tr>
+                    <tr>
+                        <td>ID người dùng</td>
+                        <td>@Html.DisplayFor(model => model.UserId)</td>
+                    </tr>
+                    <tr>
+                        <td>Họ tên</td>
+                        <td>@Html.DisplayFor(model => model.FullName)</td>
+                    </tr>
+                    <tr>
+                        <td>Số điện thoại</td>
+                        <td>@Html.DisplayFor(model => model.Phone)</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>@Html.DisplayFor(model => model.Email)</td>
+                    </tr>
+                    <tr>
+                        <td>Tiêu đề</td>
+                        <td>@Html.DisplayFor(model => model.Title)</td>
+                    </tr>
+                    <tr>
+                        <td>Chi tiết</td>
+                        <td>@Html.DisplayFor(model => model.Detail)</td>
+                    </tr>
+                    <tr>
+                        <td>Ngày gửi</td>
+                        <td>@Html.DisplayFor(model => model.Created_At)</td>
+                    </tr>
+                    @*<tr>
+                <td>Người cập nhật</td>
+                <td>@Html.DisplayFor(model => model.Updated_By)</td>
+            </tr>*@
+                    @*<tr>
+                <td>Ngày cập nhật</td>
+                <td>@Html.DisplayFor(model => model.Updated_At)</td>
+            </tr>*@
+                    @*<tr>
+                <td>Trạng thái</td>
+                <td>@Html.DisplayFor(model => model.Status)</td>
+            </tr>*@
+                </table>
+            </div>
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32106.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTTN_ASP", "TTTN_ASP\TTTN_ASP.csproj", "{8DFF2B15-2E5D-46A9-AF76-FF8626E75609}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyClass", "MyClass\MyClass.csproj", "{734901E7-FBF1-4C6A-B1FB-7AF9AC84031C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8DFF2B15-2E5D-46A9-AF76-FF8626E75609}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DFF2B15-2E5D-46A9-AF76-FF8626E75609}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DFF2B15-2E5D-46A9-AF76-FF8626E75609}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DFF2B15-2E5D-46A9-AF76-FF8626E75609}.Release|Any CPU.Build.0 = Release|Any CPU
+		{734901E7-FBF1-4C6A-B1FB-7AF9AC84031C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{734901E7-FBF1-4C6A-B1FB-7AF9AC84031C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{734901E7-FBF1-4C6A-B1FB-7AF9AC84031C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{734901E7-FBF1-4C6A-B1FB-7AF9AC84031C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0213F441-EA76-4369-B4C9-78199FCCA75E}
+	EndGlobalSection
+EndGlobal

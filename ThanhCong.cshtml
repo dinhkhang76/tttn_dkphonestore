@@ -1,0 +1,64 @@
+﻿@model IEnumerable<CartItem>
+@{
+    ViewBag.Title = "Đặt hàng thành công";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+@{
+    var user = ViewBag.user;
+}
+
+
+<h1 class=" test text-center text-uppercase" style="margin-top: 3rem; color:rgb(31, 153, 31);font-weight:bold;">Đặt hàng thành công!</h1>
+<br>
+<br>
+<a href="~/trang-chu" class="btn btn-info btn-sm" style="font-weight:bold;margin-left: 43%;font-size:18px"><i class="fas fa-reply"></i> Tiếp tục mua hàng</a>
+<br>
+<br>
+
+
+@*<div class="donhang col-md-5" style="margin-left:30%">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item bg-light text-center"><h3>HÓA ĐƠN</h3> </li>
+        <li class="list-group-item bg-light">
+            @{ decimal tongtien = 0; }
+
+
+            <div class="row p-2 my-2">
+                <div class="col-md-8"><b class="title-3">@Model.Name</b></div>
+                <div class="col-md-4">
+                    <label class="price text-danger">
+                        @string.Format("{0:0,0}", cart.Amount)
+                        <span class="woocommerce-Price-currencySymbol">VND</span>
+                    </label><br />
+                    <span>Số lượng: @cart.Qty</span>
+                </div>
+            </div>
+            tongtien += cart.Amount;
+
+        </li>
+        <li class="list-group-item bg-light">
+
+            <div class="row p-2">
+                <div class="col-md-7"><span class="title-3"> Đơn hàng</span></div>
+                <div class="col-md-5 nav justify-content-end"><span class="title-4-1">@string.Format("{0:0,0}", tongtien) VND</span></div>
+            </div>
+            <div class="row p-2">
+                <div class="col-md-7"><span class="title-3">Phí vận chuyển</span></div>
+                <div class="col-md-5 nav justify-content-end"><span class="title-4-1">0 VND</span></div>
+            </div>
+            <div class="row p-2 ">
+                <div class="col-md-8"><span class="title-3">Giảm giá</span></div>
+                <div class="col-md-4 nav justify-content-end"><span class="title-4-1">0 VND</span></div>
+            </div>
+        </li>
+        <li class="list-group-item bg-light">
+            <div class="row p-2">
+                <div class="col-md-7"><span class="title-5"><b>TỔNG CỘNG</b></span></div>
+                <div class="col-md-5 nav justify-content-end"><b><span class="title-4-1">@string.Format("{0:0,0}", tongtien) VND</span></b></div>
+            </div>
+        </li>
+
+    </ul>
+</div>*@
+
+
